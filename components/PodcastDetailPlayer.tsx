@@ -12,6 +12,7 @@ import type { PodcastDetailPlayerProps } from "@/types";
 import LoaderSpinner from "./LoaderSpinner";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
+import { useAudio } from "@/providers/AudioProvider";
 
 const PodcastDetailPlayer = ({
   audioUrl,
@@ -26,10 +27,10 @@ const PodcastDetailPlayer = ({
   authorId,
 }: PodcastDetailPlayerProps) => {
   const router = useRouter();
-  //const { setAudio } = useAudio();
+  const { setAudio } = useAudio();
   const { toast } = useToast();
   const [isDeleting, setIsDeleting] = useState(false);
-  const deletePodcast = useMutation(api.podcasts.deletePodcast);
+  const deletePodcast = useMutation(api.podcast.deletePodcast);
 
   const handleDelete = async () => {
     try {
@@ -48,13 +49,13 @@ const PodcastDetailPlayer = ({
   };
 
   const handlePlay = () => {
-   /** setAudio({
+    setAudio({
       title: podcastTitle,
       audioUrl,
       imageUrl,
       author,
       podcastId,
-    }); */
+    }); 
   };
 
   if (!imageUrl || !authorImageUrl) return <LoaderSpinner />;
