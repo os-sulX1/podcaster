@@ -9,9 +9,8 @@ import React from "react";
 import { Button } from "./ui/button";
 import { useAudio } from "@/providers/AudioProvider";
 
-type Props = {};
 
-const LeftSidebar = (props: Props) => {
+const LeftSidebar = () => {
 	const pathName= usePathname()
 	const router = useRouter()
 	const {signOut} = useClerk()
